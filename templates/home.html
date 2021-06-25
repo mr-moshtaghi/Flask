@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 
-  {% block title %}
-    Home
-  {% endblock %}
+{% block title %} Home page {% endblock %}
 
-  {% block content %}
-    <h3>Hello {{name}}</h3>
-  {% endblock %}
+
+{% block content %}
+    <div class="card">
+        {% for todo in todos %}
+            <div class="card-body">
+                <h3><a href="{{ url_for('detail', todo_id=todo.id) }}">{{ todo.content }}</a></h3>
+                <small>{{ todo.date.strftime('%Y-%m-%d') }}</small>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

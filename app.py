@@ -18,7 +18,14 @@ class Todo(db.Model):
 
 @app.route('/home')
 def home():
-    return render_template('home.html', name='amir')
+    todos = Todo.query.all()
+    return render_template('home.html', todos=todos)
+
+
+@app.route('/<int:todo_id>')
+def detail(todo_id):
+    todo = Todo.query.get(todo_id)
+    return render_template('detail.html', todo=todo)
 
 
 @app.route('/about')
